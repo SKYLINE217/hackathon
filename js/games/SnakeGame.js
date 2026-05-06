@@ -18,6 +18,11 @@ class SnakeGame extends GameEngine {
         this._bindEvents();
     }
 
+    start() {
+        this._reset();
+        super.start();
+    }
+
     _reset() {
         this.snake    = [{ x:12, y:10 }, { x:11, y:10 }, { x:10, y:10 }];
         this.dir      = { x:1, y:0 };

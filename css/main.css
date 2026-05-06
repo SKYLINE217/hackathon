@@ -85,10 +85,10 @@ body {
 @keyframes rain-fall { 0%{transform:translateY(-20px)} 100%{transform:translateY(100vh)} }
 
 /* ---- Glitch Text ---- */
-.glitch { position:relative; font-family:var(--font-display); color:var(--text-primary); line-height: 1.2; padding: 0.1em 0; overflow: visible; }
-.glitch::before,.glitch::after { content:attr(data-text); position:absolute; top:0.1em; left:0; width:100%; height:100%; overflow: visible; }
-.glitch::before { color:var(--neon-pink); animation:glitch-1 3s infinite linear alternate-reverse; clip-path:inset(0 0 65% 0); }
-.glitch::after  { color:var(--neon-cyan); animation:glitch-2 2.5s infinite linear alternate-reverse; clip-path:inset(35% 0 0 0); }
+.glitch { position:relative; font-family:var(--font-display); color:var(--text-primary); line-height:1.2; overflow:visible; }
+.glitch::before,.glitch::after { content:attr(data-text); position:absolute; top:0; left:0; width:100%; height:100%; overflow:visible; }
+.glitch::before { color:var(--neon-pink); animation:glitch-1 3s infinite linear alternate-reverse; clip-path:inset(-10% 0 65% 0); }
+.glitch::after  { color:var(--neon-cyan); animation:glitch-2 2.5s infinite linear alternate-reverse; clip-path:inset(35% 0 -10% 0); }
 @keyframes glitch-1 {
     0%,94%{transform:translate(0)} 95%{transform:translate(-3px,1px)} 96%{transform:translate(3px,-1px)}
     97%{transform:translate(-2px,2px)} 98%{transform:translate(2px,-2px)} 99%{transform:translate(-1px,1px)} 100%{transform:translate(1px,-1px)}
