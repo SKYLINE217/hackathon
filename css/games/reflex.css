@@ -1,0 +1,26 @@
+/* Reflex Rush */
+.reflex-zone {
+    width:100%; max-width:700px; min-height:320px;
+    display:flex; flex-direction:column; align-items:center; justify-content:center; gap:1rem;
+    background:rgba(13,13,31,0.8); border:1px solid var(--border-subtle);
+    cursor:pointer; transition:background 0.15s; position:relative; border-radius:4px;
+    user-select:none;
+}
+.reflex-zone.waiting  { background:rgba(5,5,16,0.9); border-color:var(--border-subtle); }
+.reflex-zone.ready    { background:rgba(57,255,20,0.12); border-color:var(--neon-green); box-shadow:0 0 40px rgba(57,255,20,0.2); }
+.reflex-zone.tooearly { background:rgba(255,0,60,0.12); border-color:var(--neon-red); animation:shake 0.4s; }
+.reflex-instruction { font-family:var(--font-display); font-size:1.5rem; font-weight:700; letter-spacing:3px; color:var(--text-secondary); text-align:center; }
+.reflex-zone.ready .reflex-instruction { color:var(--neon-green); text-shadow:var(--glow-green); font-size:2rem; animation:pulse-glow 0.5s infinite; }
+.reflex-zone.tooearly .reflex-instruction { color:var(--neon-red); }
+.reflex-result { display:flex; align-items:baseline; gap:0.3rem; }
+.reflex-time { font-family:var(--font-display); font-size:4rem; font-weight:900; color:var(--neon-cyan); text-shadow:var(--glow-cyan); }
+.reflex-unit { font-family:var(--font-display); font-size:1.2rem; color:var(--text-muted); }
+.reflex-round-counter { position:absolute; top:1rem; right:1rem; font-family:var(--font-display); font-size:0.7rem; letter-spacing:2px; color:var(--text-muted); }
+.reflex-results-list { display:flex; gap:0.5rem; flex-wrap:wrap; justify-content:center; margin-bottom:0.5rem; }
+.reflex-result-chip {
+    font-family:var(--font-display); font-size:0.8rem; font-weight:700;
+    padding:0.4rem 1rem; border:1px solid var(--border-subtle); background:rgba(255,255,255,0.03);
+}
+.reflex-result-chip.great  { color:var(--neon-green);  border-color:var(--neon-green); }
+.reflex-result-chip.ok     { color:var(--neon-yellow); border-color:var(--neon-yellow); }
+.reflex-result-chip.slow   { color:var(--neon-red);    border-color:var(--neon-red); }

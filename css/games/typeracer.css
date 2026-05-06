@@ -1,0 +1,44 @@
+/* Type Racer */
+.typeracer-stats-bar { display:flex; gap:2rem; margin-bottom:1.5rem; }
+
+/* Word groups */
+.tr-word { display:inline; }
+.tr-word.active-word { background:rgba(0,240,255,0.06); border-radius:3px; outline: 1px solid rgba(0,240,255,0.2); }
+.tr-stat { display:flex; flex-direction:column; align-items:center; gap:0.2rem; }
+.tr-stat-label { font-family:var(--font-display); font-size:0.6rem; letter-spacing:2px; color:var(--text-muted); }
+.tr-stat-value { font-family:var(--font-display); font-size:1.4rem; font-weight:700; color:var(--neon-cyan); }
+#tr-time.warning { color:var(--neon-red); animation:pulse-glow 0.5s infinite; }
+
+.typeracer-text-display {
+    width:100%; max-width:750px; padding:1.5rem 2rem; line-height:2.2;
+    background:rgba(13,13,31,0.8); border:1px solid var(--border-glow);
+    font-family:var(--font-mono); font-size:1.2rem; letter-spacing:0.05em;
+    min-height:120px; margin-bottom:1.25rem; word-break:break-word;
+    clip-path: polygon(0 0,calc(100% - 14px) 0,100% 14px,100% 100%,14px 100%,0 calc(100% - 14px));
+}
+.tr-char { color:var(--text-muted); transition:color 0.05s; }
+.tr-char.correct { color:var(--neon-green); }
+.tr-char.wrong   { color:var(--neon-red); background:rgba(255,0,60,0.15); border-radius:2px; }
+.tr-char.current {
+    color:var(--text-primary); border-bottom:2px solid var(--neon-cyan);
+    animation:cursor-blink 0.8s step-end infinite;
+}
+@keyframes cursor-blink { 0%,100%{border-color:var(--neon-cyan)} 50%{border-color:transparent} }
+
+.typeracer-input {
+    width:100%; max-width:750px; padding:1rem 1.5rem;
+    background:rgba(255,255,255,0.03); border:1px solid var(--border-glow);
+    color:var(--text-primary); font-family:var(--font-mono); font-size:1.1rem;
+    outline:none; transition:border-color 0.3s; caret-color:var(--neon-cyan);
+}
+.typeracer-input:focus { border-color:var(--neon-cyan); box-shadow:0 0 10px rgba(0,240,255,0.1); }
+.typeracer-input:disabled { opacity:0.4; cursor:not-allowed; }
+.typeracer-duration-select { display:flex; flex-direction:column; align-items:center; gap:0.5rem; margin:0.5rem 0; }
+.typeracer-final-stats { display:flex; gap:2rem; margin:0.5rem 0; }
+.tr-final-stat { display:flex; flex-direction:column; align-items:center; gap:0.2rem; }
+.tr-final-label { font-family:var(--font-display); font-size:0.6rem; letter-spacing:2px; color:var(--text-muted); }
+.tr-final-value { font-family:var(--font-display); font-size:2rem; font-weight:900; color:var(--neon-cyan); text-shadow:var(--glow-cyan); }
+@media(max-width:600px){
+    .typeracer-text-display{font-size:1rem;padding:1rem;}
+    .typeracer-final-stats{flex-wrap:wrap;justify-content:center;}
+}

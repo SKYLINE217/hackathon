@@ -1,0 +1,424 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Neon Arcade — A cyberpunk multi-game web arcade with 5 interactive mini-games. Play Snake, Memory, Trivia, Reflex, and Typing games in your browser.">
+    <title>⚡ NEON ARCADE — Cyberpunk Gaming Hub</title>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;500;600;700;800;900&family=Rajdhani:wght@300;400;500;600;700&family=Fira+Code:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Stylesheets -->
+    <link rel="stylesheet" href="css/main.css">
+    <link rel="stylesheet" href="css/hub.css">
+    <link rel="stylesheet" href="css/games/snake.css">
+    <link rel="stylesheet" href="css/games/memory.css">
+    <link rel="stylesheet" href="css/games/trivia.css">
+    <link rel="stylesheet" href="css/games/reflex.css">
+    <link rel="stylesheet" href="css/games/typeracer.css">
+</head>
+<body>
+
+    <!-- Cyberpunk Background Effects -->
+    <div id="bg-effects">
+        <div id="scanlines"></div>
+        <div id="rain-container"></div>
+        <div id="grid-floor"></div>
+    </div>
+
+    <!-- Achievement Toast Container -->
+    <div id="achievement-toast-container"></div>
+
+    <!-- ============ HUB SCREEN ============ -->
+    <section id="hub-screen" class="screen active">
+        <header id="hub-header">
+            <div class="glitch-wrapper">
+                <h1 id="hub-title" class="glitch" data-text="NEON ARCADE">NEON ARCADE</h1>
+            </div>
+            <p id="hub-subtitle" class="cyber-text">SELECT YOUR PROGRAM // JACK IN</p>
+        </header>
+
+        <div id="hub-stats-bar">
+            <div class="stat-chip" id="stat-total-score">
+                <span class="stat-label">TOTAL SCORE</span>
+                <span class="stat-value" id="total-score-value">0</span>
+            </div>
+            <div class="stat-chip" id="stat-games-played">
+                <span class="stat-label">RUNS</span>
+                <span class="stat-value" id="games-played-value">0</span>
+            </div>
+            <div class="stat-chip" id="stat-achievements">
+                <span class="stat-label">BADGES</span>
+                <span class="stat-value" id="achievements-value">0/12</span>
+            </div>
+            <div class="stat-chip clickable" id="stat-sound-toggle">
+                <span class="stat-label">AUDIO</span>
+                <span class="stat-value" id="sound-toggle-value">ON</span>
+            </div>
+        </div>
+
+        <div id="game-grid">
+            <div class="game-card" data-game="snake" id="card-snake">
+                <div class="card-glow"></div>
+                <div class="card-inner">
+                    <div class="card-icon">🐍</div>
+                    <h2 class="card-title">SNAKE NEON</h2>
+                    <p class="card-genre">ARCADE</p>
+                    <p class="card-desc">Navigate the neon grid. Consume data packets. Don't crash.</p>
+                    <div class="card-highscore">
+                        <span>HI-SCORE</span>
+                        <span id="snake-highscore">0</span>
+                    </div>
+                </div>
+                <div class="card-scanline"></div>
+            </div>
+
+            <div class="game-card" data-game="memory" id="card-memory">
+                <div class="card-glow"></div>
+                <div class="card-inner">
+                    <div class="card-icon">🧠</div>
+                    <h2 class="card-title">MEMORY MATRIX</h2>
+                    <p class="card-genre">PUZZLE</p>
+                    <p class="card-desc">Decode the neural pattern. Replicate the sequence. Don't forget.</p>
+                    <div class="card-highscore">
+                        <span>HI-SCORE</span>
+                        <span id="memory-highscore">0</span>
+                    </div>
+                </div>
+                <div class="card-scanline"></div>
+            </div>
+
+            <div class="game-card" data-game="trivia" id="card-trivia">
+                <div class="card-glow"></div>
+                <div class="card-inner">
+                    <div class="card-icon">🧩</div>
+                    <h2 class="card-title">TRIVIA BLITZ</h2>
+                    <p class="card-genre">KNOWLEDGE</p>
+                    <p class="card-desc">Access the databank. 15 seconds per query. Zero margin for error.</p>
+                    <div class="card-highscore">
+                        <span>HI-SCORE</span>
+                        <span id="trivia-highscore">0</span>
+                    </div>
+                </div>
+                <div class="card-scanline"></div>
+            </div>
+
+            <div class="game-card" data-game="reflex" id="card-reflex">
+                <div class="card-glow"></div>
+                <div class="card-inner">
+                    <div class="card-icon">⚡</div>
+                    <h2 class="card-title">REFLEX RUSH</h2>
+                    <p class="card-genre">REACTION</p>
+                    <p class="card-desc">Augment your reflexes. React in milliseconds. Prove you're wired.</p>
+                    <div class="card-highscore">
+                        <span>BEST</span>
+                        <span id="reflex-highscore">---ms</span>
+                    </div>
+                </div>
+                <div class="card-scanline"></div>
+            </div>
+
+            <div class="game-card" data-game="typeracer" id="card-typeracer">
+                <div class="card-glow"></div>
+                <div class="card-inner">
+                    <div class="card-icon">⌨️</div>
+                    <h2 class="card-title">TYPE RACER</h2>
+                    <p class="card-genre">SPEED</p>
+                    <p class="card-desc">Interface with the terminal. Type at machine speed. Beat the clock.</p>
+                    <div class="card-highscore">
+                        <span>BEST</span>
+                        <span id="typeracer-highscore">0 WPM</span>
+                    </div>
+                </div>
+                <div class="card-scanline"></div>
+            </div>
+        </div>
+
+        <!-- Leaderboard / Achievements Panel -->
+        <div id="hub-bottom-panel">
+            <div id="leaderboard-panel" class="cyber-panel">
+                <h3 class="panel-title">// GLOBAL LEADERBOARD</h3>
+                <div id="leaderboard-list"></div>
+            </div>
+            <div id="achievements-panel" class="cyber-panel">
+                <h3 class="panel-title">// ACHIEVEMENTS</h3>
+                <div id="achievements-grid"></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ============ GAME SCREENS ============ -->
+
+    <!-- Snake Game -->
+    <section id="snake-screen" class="screen game-screen">
+        <div class="game-header">
+            <button class="btn-back" id="snake-back">◀ EXIT</button>
+            <h2 class="game-screen-title">SNAKE NEON</h2>
+            <div class="game-score-display">
+                <span class="score-label">SCORE</span>
+                <span class="score-value" id="snake-score">0</span>
+            </div>
+        </div>
+        <div class="game-area" id="snake-game-area">
+            <canvas id="snake-canvas"></canvas>
+            <div class="game-overlay" id="snake-overlay">
+                <h3 class="overlay-title">SNAKE NEON</h3>
+                <p class="overlay-desc">Use WASD or Arrow Keys to move</p>
+                <button class="btn-cyber" id="snake-start-btn">JACK IN</button>
+            </div>
+            <div class="game-over-overlay" id="snake-gameover" style="display:none;">
+                <h3 class="overlay-title glitch" data-text="FLATLINED">FLATLINED</h3>
+                <p class="final-score">SCORE: <span id="snake-final-score">0</span></p>
+                <p class="high-score-msg" id="snake-high-msg" style="display:none;">⚡ NEW HIGH SCORE ⚡</p>
+                <div class="overlay-buttons">
+                    <button class="btn-cyber" id="snake-retry-btn">RETRY</button>
+                    <button class="btn-cyber secondary" id="snake-hub-btn">HUB</button>
+                </div>
+            </div>
+        </div>
+        <div class="game-info-bar" id="snake-info-bar">
+            <div class="info-item">
+                <span class="info-label">LENGTH</span>
+                <span class="info-value" id="snake-length">3</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">SPEED</span>
+                <span class="info-value" id="snake-speed">1x</span>
+            </div>
+            <div class="info-item">
+                <span class="info-label">POWER-UP</span>
+                <span class="info-value" id="snake-powerup">NONE</span>
+            </div>
+        </div>
+    </section>
+
+    <!-- Memory Game -->
+    <section id="memory-screen" class="screen game-screen">
+        <div class="game-header">
+            <button class="btn-back" id="memory-back">◀ EXIT</button>
+            <h2 class="game-screen-title">MEMORY MATRIX</h2>
+            <div class="game-score-display">
+                <span class="score-label">SCORE</span>
+                <span class="score-value" id="memory-score">0</span>
+            </div>
+        </div>
+        <div class="game-area" id="memory-game-area">
+            <div class="memory-info">
+                <span class="memory-level">LEVEL <span id="memory-level-num">1</span></span>
+                <span class="memory-status" id="memory-status">WATCH THE PATTERN</span>
+            </div>
+            <div id="memory-grid" class="memory-grid"></div>
+            <div class="game-overlay" id="memory-overlay">
+                <h3 class="overlay-title">MEMORY MATRIX</h3>
+                <p class="overlay-desc">Watch the cells light up. Replicate the pattern.</p>
+                <button class="btn-cyber" id="memory-start-btn">JACK IN</button>
+            </div>
+            <div class="game-over-overlay" id="memory-gameover" style="display:none;">
+                <h3 class="overlay-title glitch" data-text="NEURAL OVERLOAD">NEURAL OVERLOAD</h3>
+                <p class="final-score">SCORE: <span id="memory-final-score">0</span></p>
+                <p class="final-level">REACHED LEVEL <span id="memory-final-level">1</span></p>
+                <p class="high-score-msg" id="memory-high-msg" style="display:none;">⚡ NEW HIGH SCORE ⚡</p>
+                <div class="overlay-buttons">
+                    <button class="btn-cyber" id="memory-retry-btn">RETRY</button>
+                    <button class="btn-cyber secondary" id="memory-hub-btn">HUB</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Trivia Game -->
+    <section id="trivia-screen" class="screen game-screen">
+        <div class="game-header">
+            <button class="btn-back" id="trivia-back">◀ EXIT</button>
+            <h2 class="game-screen-title">TRIVIA BLITZ</h2>
+            <div class="game-score-display">
+                <span class="score-label">SCORE</span>
+                <span class="score-value" id="trivia-score">0</span>
+            </div>
+        </div>
+        <div class="game-area" id="trivia-game-area">
+            <div class="trivia-progress">
+                <div class="trivia-question-counter">
+                    <span id="trivia-current-q">1</span> / <span id="trivia-total-q">10</span>
+                </div>
+                <div class="trivia-timer-bar">
+                    <div class="trivia-timer-fill" id="trivia-timer-fill"></div>
+                </div>
+                <div class="trivia-streak" id="trivia-streak">🔥 0</div>
+            </div>
+            <div class="trivia-category-badge" id="trivia-category">SCIENCE</div>
+            <div class="trivia-question-box">
+                <p id="trivia-question-text" class="trivia-question">Loading question...</p>
+            </div>
+            <div class="trivia-options" id="trivia-options">
+                <button class="trivia-option" data-index="0">
+                    <span class="option-key">1</span>
+                    <span class="option-text" id="trivia-opt-0">Option A</span>
+                </button>
+                <button class="trivia-option" data-index="1">
+                    <span class="option-key">2</span>
+                    <span class="option-text" id="trivia-opt-1">Option B</span>
+                </button>
+                <button class="trivia-option" data-index="2">
+                    <span class="option-key">3</span>
+                    <span class="option-text" id="trivia-opt-2">Option C</span>
+                </button>
+                <button class="trivia-option" data-index="3">
+                    <span class="option-key">4</span>
+                    <span class="option-text" id="trivia-opt-3">Option D</span>
+                </button>
+            </div>
+            <div class="game-overlay" id="trivia-overlay">
+                <h3 class="overlay-title">TRIVIA BLITZ</h3>
+                <p class="overlay-desc">10 questions. 15 seconds each. Choose wisely.</p>
+                <div class="trivia-category-select">
+                    <p class="category-label">SELECT CATEGORY</p>
+                    <div class="category-buttons">
+                        <button class="btn-category active" data-category="all">ALL</button>
+                        <button class="btn-category" data-category="science">SCIENCE</button>
+                        <button class="btn-category" data-category="tech">TECH</button>
+                        <button class="btn-category" data-category="gaming">GAMING</button>
+                        <button class="btn-category" data-category="history">HISTORY</button>
+                        <button class="btn-category" data-category="popculture">POP CULTURE</button>
+                    </div>
+                </div>
+                <button class="btn-cyber" id="trivia-start-btn">JACK IN</button>
+            </div>
+            <div class="game-over-overlay" id="trivia-gameover" style="display:none;">
+                <h3 class="overlay-title glitch" data-text="DEBRIEF">DEBRIEF</h3>
+                <div class="trivia-results">
+                    <p class="final-score">SCORE: <span id="trivia-final-score">0</span></p>
+                    <p class="trivia-accuracy">ACCURACY: <span id="trivia-accuracy">0%</span></p>
+                    <p class="trivia-best-streak">BEST STREAK: <span id="trivia-best-streak">0</span></p>
+                </div>
+                <p class="high-score-msg" id="trivia-high-msg" style="display:none;">⚡ NEW HIGH SCORE ⚡</p>
+                <div class="overlay-buttons">
+                    <button class="btn-cyber" id="trivia-retry-btn">RETRY</button>
+                    <button class="btn-cyber secondary" id="trivia-hub-btn">HUB</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Reflex Game -->
+    <section id="reflex-screen" class="screen game-screen">
+        <div class="game-header">
+            <button class="btn-back" id="reflex-back">◀ EXIT</button>
+            <h2 class="game-screen-title">REFLEX RUSH</h2>
+            <div class="game-score-display">
+                <span class="score-label">AVG</span>
+                <span class="score-value" id="reflex-avg">---ms</span>
+            </div>
+        </div>
+        <div class="game-area" id="reflex-game-area">
+            <div class="reflex-zone" id="reflex-zone">
+                <div class="reflex-instruction" id="reflex-instruction">WAIT FOR GREEN...</div>
+                <div class="reflex-result" id="reflex-result" style="display:none;">
+                    <span class="reflex-time" id="reflex-time">0</span>
+                    <span class="reflex-unit">ms</span>
+                </div>
+                <div class="reflex-round-counter" id="reflex-round-counter">ROUND 1/5</div>
+            </div>
+            <div class="game-overlay" id="reflex-overlay">
+                <h3 class="overlay-title">REFLEX RUSH</h3>
+                <p class="overlay-desc">When the screen turns green, click or press SPACE as fast as you can.</p>
+                <p class="overlay-desc">5 rounds. Don't click too early!</p>
+                <button class="btn-cyber" id="reflex-start-btn">JACK IN</button>
+            </div>
+            <div class="game-over-overlay" id="reflex-gameover" style="display:none;">
+                <h3 class="overlay-title glitch" data-text="RESULTS">RESULTS</h3>
+                <div class="reflex-results-list" id="reflex-results-list"></div>
+                <p class="final-score">AVERAGE: <span id="reflex-final-avg">0</span>ms</p>
+                <p class="high-score-msg" id="reflex-high-msg" style="display:none;">⚡ NEW PERSONAL BEST ⚡</p>
+                <div class="overlay-buttons">
+                    <button class="btn-cyber" id="reflex-retry-btn">RETRY</button>
+                    <button class="btn-cyber secondary" id="reflex-hub-btn">HUB</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Type Racer Game -->
+    <section id="typeracer-screen" class="screen game-screen">
+        <div class="game-header">
+            <button class="btn-back" id="typeracer-back">◀ EXIT</button>
+            <h2 class="game-screen-title">TYPE RACER</h2>
+            <div class="game-score-display">
+                <span class="score-label">WPM</span>
+                <span class="score-value" id="typeracer-wpm">0</span>
+            </div>
+        </div>
+        <div class="game-area" id="typeracer-game-area">
+            <div class="typeracer-stats-bar">
+                <div class="tr-stat">
+                    <span class="tr-stat-label">TIME</span>
+                    <span class="tr-stat-value" id="tr-time">60</span>
+                </div>
+                <div class="tr-stat">
+                    <span class="tr-stat-label">ACCURACY</span>
+                    <span class="tr-stat-value" id="tr-accuracy">100%</span>
+                </div>
+                <div class="tr-stat">
+                    <span class="tr-stat-label">CHARS</span>
+                    <span class="tr-stat-value" id="tr-chars">0</span>
+                </div>
+            </div>
+            <div class="typeracer-text-display" id="typeracer-text-display">
+                <!-- Characters will be injected here -->
+            </div>
+            <input type="text" id="typeracer-input" class="typeracer-input" placeholder="Start typing..." autocomplete="off" autocorrect="off" autocapitalize="off" spellcheck="false" disabled>
+            <div class="game-overlay" id="typeracer-overlay">
+                <h3 class="overlay-title">TYPE RACER</h3>
+                <p class="overlay-desc">Type the displayed text as fast and accurately as you can.</p>
+                <div class="typeracer-duration-select">
+                    <p class="category-label">DURATION</p>
+                    <div class="category-buttons">
+                        <button class="btn-category" data-duration="30">30s</button>
+                        <button class="btn-category active" data-duration="60">60s</button>
+                        <button class="btn-category" data-duration="120">120s</button>
+                    </div>
+                </div>
+                <button class="btn-cyber" id="typeracer-start-btn">JACK IN</button>
+            </div>
+            <div class="game-over-overlay" id="typeracer-gameover" style="display:none;">
+                <h3 class="overlay-title glitch" data-text="SESSION COMPLETE">SESSION COMPLETE</h3>
+                <div class="typeracer-final-stats">
+                    <div class="tr-final-stat">
+                        <span class="tr-final-label">WPM</span>
+                        <span class="tr-final-value" id="tr-final-wpm">0</span>
+                    </div>
+                    <div class="tr-final-stat">
+                        <span class="tr-final-label">ACCURACY</span>
+                        <span class="tr-final-value" id="tr-final-accuracy">0%</span>
+                    </div>
+                    <div class="tr-final-stat">
+                        <span class="tr-final-label">CHARS TYPED</span>
+                        <span class="tr-final-value" id="tr-final-chars">0</span>
+                    </div>
+                </div>
+                <p class="high-score-msg" id="typeracer-high-msg" style="display:none;">⚡ NEW PERSONAL BEST ⚡</p>
+                <div class="overlay-buttons">
+                    <button class="btn-cyber" id="typeracer-retry-btn">RETRY</button>
+                    <button class="btn-cyber secondary" id="typeracer-hub-btn">HUB</button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Scripts -->
+    <script src="js/engine/StorageManager.js"></script>
+    <script src="js/engine/AudioManager.js"></script>
+    <script src="js/engine/ParticleSystem.js"></script>
+    <script src="js/engine/AchievementSystem.js"></script>
+    <script src="js/engine/GameEngine.js"></script>
+    <script src="js/games/SnakeGame.js"></script>
+    <script src="js/games/MemoryGame.js"></script>
+    <script src="js/games/TriviaGame.js"></script>
+    <script src="js/games/ReflexGame.js"></script>
+    <script src="js/games/TypeRacerGame.js"></script>
+    <script src="js/app.js"></script>
+</body>
+</html>

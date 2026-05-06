@@ -1,0 +1,20 @@
+/* Memory Matrix */
+.memory-info { display:flex; justify-content:space-between; align-items:center; width:100%; max-width:500px; margin-bottom:1rem; }
+.memory-level { font-family:var(--font-display); font-size:1rem; font-weight:700; color:var(--neon-purple); letter-spacing:2px; }
+.memory-status { font-family:var(--font-display); font-size:0.75rem; letter-spacing:2px; color:var(--text-muted); }
+.memory-grid { display:grid; gap:8px; width:fit-content; }
+.memory-cell {
+    width:70px; height:70px; background:rgba(191,0,255,0.08); border:1px solid rgba(191,0,255,0.2);
+    cursor:pointer; transition:all 0.15s; border-radius:4px;
+    display:flex; align-items:center; justify-content:center;
+}
+.memory-cell:hover:not(.disabled) { border-color:var(--neon-purple); background:rgba(191,0,255,0.15); }
+.memory-cell.active { background:var(--neon-purple); box-shadow:0 0 20px rgba(191,0,255,0.6); border-color:var(--neon-purple); }
+.memory-cell.correct { background:var(--neon-green); box-shadow:0 0 20px rgba(57,255,20,0.6); border-color:var(--neon-green); }
+.memory-cell.wrong   { background:var(--neon-red);   box-shadow:0 0 20px rgba(255,0,60,0.6);   border-color:var(--neon-red); }
+.memory-cell.disabled { pointer-events:none; }
+.final-level { font-family:var(--font-display); font-size:1rem; color:var(--text-secondary); letter-spacing:1px; }
+.final-level span { color:var(--neon-purple); }
+@media(max-width:480px){
+    .memory-cell{width:52px;height:52px;}
+}
