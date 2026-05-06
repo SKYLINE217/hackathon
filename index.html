@@ -142,6 +142,15 @@
             </div>
 
             <div class="game-card" data-game="typeracer" id="card-typeracer">
+                <!-- Holo-Ghost -->
+                <div class="holo-ghost">
+                  <svg viewBox="0 0 100 100" width="40" height="40">
+                    <path d="M20,80 Q20,20 50,20 Q80,20 80,80 L70,70 L60,80 L50,70 L40,80 L30,70 Z" fill="rgba(0,240,255,0.2)" stroke="var(--neon-cyan)" stroke-width="2"/>
+                    <circle cx="35" cy="45" r="5" fill="var(--neon-cyan)"/>
+                    <circle cx="65" cy="45" r="5" fill="var(--neon-cyan)"/>
+                    <path d="M40,60 Q50,70 60,60" fill="none" stroke="var(--neon-cyan)" stroke-width="2"/>
+                  </svg>
+                </div>
                 <div class="card-glow"></div>
                 <div class="card-inner">
                     <div class="card-icon">⌨️</div>
@@ -175,7 +184,20 @@
                 <h3 class="panel-title">// GLOBAL LEADERBOARD</h3>
                 <div id="leaderboard-list"></div>
             </div>
-            <div id="achievements-panel" class="cyber-panel">
+            <div id="achievements-panel" class="cyber-panel" style="position: relative;">
+                <!-- Data-Spider -->
+                <div class="data-spider">
+                  <svg viewBox="0 0 100 100" width="50" height="50">
+                    <circle cx="50" cy="50" r="15" fill="#000" stroke="var(--neon-yellow)" stroke-width="2"/>
+                    <circle cx="50" cy="50" r="5" fill="var(--neon-pink)"/>
+                    <path class="spider-leg" d="M35,50 Q10,20 20,10" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
+                    <path class="spider-leg" d="M65,50 Q90,20 80,10" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
+                    <path class="spider-leg" d="M38,60 Q10,70 15,90" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
+                    <path class="spider-leg" d="M62,60 Q90,70 85,90" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
+                    <path class="spider-leg" d="M35,40 Q10,40 5,50" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
+                    <path class="spider-leg" d="M65,40 Q90,40 95,50" fill="none" stroke="var(--neon-yellow)" stroke-width="2"/>
+                  </svg>
+                </div>
                 <h3 class="panel-title">// ACHIEVEMENTS</h3>
                 <div id="achievements-grid"></div>
             </div>

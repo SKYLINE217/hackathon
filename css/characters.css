@@ -6,8 +6,8 @@
 /* 1. Cyber-Drone (Hub Screen) */
 .cyber-drone {
   position: absolute;
-  top: -20px;
-  right: 10%;
+  top: -40px;
+  left: 5%;
   animation: hover-drone 3s ease-in-out infinite alternate;
   z-index: 10;
   filter: drop-shadow(0 0 10px var(--neon-cyan));
@@ -133,4 +133,42 @@
     transform: translateY(-20vh) rotate(360deg) scale(1.5);
     opacity: 0;
   }
+}
+
+/* 5. Data-Spider (Achievements Panel) */
+.data-spider {
+  position: absolute;
+  top: -30px;
+  right: -20px;
+  z-index: 10;
+  animation: spider-crawl 4s infinite alternate ease-in-out;
+}
+@keyframes spider-crawl {
+  0% { transform: translate(0, 0) rotate(15deg); }
+  50% { transform: translate(-10px, 10px) rotate(0deg); }
+  100% { transform: translate(-20px, 5px) rotate(-15deg); }
+}
+.spider-leg {
+  animation: leg-wiggle 0.5s infinite alternate;
+  transform-origin: center;
+}
+@keyframes leg-wiggle {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(5deg); }
+}
+
+/* 6. Holo-Ghost (Overlay) */
+.holo-ghost {
+  position: absolute;
+  top: 10px;
+  left: -20px;
+  z-index: 10;
+  animation: ghost-float 6s infinite ease-in-out;
+  opacity: 0.8;
+  filter: drop-shadow(0 0 10px var(--neon-cyan));
+}
+@keyframes ghost-float {
+  0% { transform: translate(0, 0) scale(1); opacity: 0.8; }
+  50% { transform: translate(15px, -15px) scale(1.1); opacity: 0.5; }
+  100% { transform: translate(0, 0) scale(1); opacity: 0.8; }
 }
