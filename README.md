@@ -73,6 +73,7 @@ hackathon/
 ├── css/
 │   ├── main.css                # Global design system & cyberpunk theme
 │   ├── hub.css                 # Hub/lobby screen
+│   ├── characters.css          # Character & ambient animations
 │   └── games/
 │       ├── snake.css           # Snake Neon
 │       ├── memory.css          # Memory Matrix
@@ -99,14 +100,18 @@ hackathon/
 
 ---
 
-## 🎨 Design Philosophy
+## 🎨 Cyberpunk Aesthetic & Animations
 
-The UI draws from cyberpunk aesthetics:
+The platform utilizes a modern CSS design system to establish a premium cyberpunk atmosphere:
 
-- **Color Palette:** Hot pink (`#ff2d95`), electric cyan (`#00f0ff`), toxic green (`#39ff14`), deep purple (`#bf00ff`) against near-black backgrounds
-- **Typography:** Orbitron (headings) + Rajdhani (body) + Fira Code (monospace)
-- **Effects:** CSS-driven scanlines, glitch text animations, neon box-shadows, rain particle overlay
-- **Panels:** Frosted glass with colored borders, mimicking holographic displays
+- **Neon Color Palette**: High-contrast pink, cyan, green, and purple over a deep dark background.
+- **Glassmorphism**: Translucent panels with blur effects for a futuristic UI.
+- **Background Effects**: CSS animated grid floors, scrolling scanlines, and randomized falling rain.
+- **Glitch Effects**: Text and button hover animations mimicking digital interference.
+- **Custom Animated Characters**: 
+  - 🤖 **Byte the Cyber-Drone**: A hovering robotic companion scanning the hub.
+  - 🐈 **Glitch-Cat**: A neon cat hanging out on the leaderboard, wagging its tail and blinking.
+  - 💀 **Holo-Skull**: A floating holographic skull that mocks you on Game Over screens.
 
 ---
 
@@ -137,6 +142,7 @@ The UI draws from cyberpunk aesthetics:
 | Graphics | HTML5 Canvas API (Snake game) |
 | Audio | Web Audio API (procedural sound generation) |
 | Storage | LocalStorage API (scores, achievements, settings) |
+| Characters | Custom SVGs + CSS Keyframes (Byte the Cyber-Drone, Glitch-Cat, Holo-Skull) |
 | Timing | `performance.now()` (sub-millisecond precision) |
 
 ---

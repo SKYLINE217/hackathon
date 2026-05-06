@@ -1,0 +1,136 @@
+/* 
+ * Character Animations and SVGs
+ * Adds multiple animated cyberpunk characters across the project.
+ */
+
+/* 1. Cyber-Drone (Hub Screen) */
+.cyber-drone {
+  position: absolute;
+  top: -20px;
+  right: 10%;
+  animation: hover-drone 3s ease-in-out infinite alternate;
+  z-index: 10;
+  filter: drop-shadow(0 0 10px var(--neon-cyan));
+}
+@keyframes hover-drone {
+  0% { transform: translateY(0px) rotate(-5deg); }
+  100% { transform: translateY(-15px) rotate(5deg); }
+}
+.drone-eye {
+  animation: pulse-eye 2s infinite;
+}
+@keyframes pulse-eye {
+  0%, 100% { opacity: 1; r: 10; fill: var(--neon-pink); }
+  50% { opacity: 0.5; r: 8; fill: var(--neon-purple); }
+}
+.drone-flame {
+  animation: flicker-flame 0.1s infinite alternate;
+  transform-origin: 50px 80px;
+}
+@keyframes flicker-flame {
+  0% { transform: scaleY(1); opacity: 0.8; }
+  100% { transform: scaleY(1.4); opacity: 1; filter: drop-shadow(0 0 5px var(--neon-yellow)); }
+}
+.drone-laser-beam {
+  animation: laser-scan 4s infinite;
+  transform-origin: 50px 45px;
+  opacity: 0;
+}
+@keyframes laser-scan {
+  0%, 10% { opacity: 0; transform: rotate(-30deg); }
+  15% { opacity: 0.6; }
+  35% { transform: rotate(30deg); opacity: 0.6; }
+  40%, 100% { opacity: 0; }
+}
+
+/* 2. Neon Cat (Leaderboard Panel) */
+.neon-cat {
+  position: absolute;
+  top: -55px;
+  right: 20px;
+  z-index: 10;
+  animation: glitch-anim 5s infinite;
+}
+.cat-tail {
+  transform-origin: 80px 70px;
+  animation: wag-tail 2s ease-in-out infinite alternate;
+}
+@keyframes wag-tail {
+  0% { transform: rotate(-5deg); }
+  100% { transform: rotate(25deg); }
+}
+.cat-eye {
+  animation: blink-eye 4s infinite;
+  transform-origin: center;
+}
+@keyframes blink-eye {
+  0%, 96%, 100% { transform: scaleY(1); }
+  98% { transform: scaleY(0.1); }
+}
+
+/* 3. Holo-Skull (Game Over Screens) */
+.holo-skull {
+  margin: 0 auto 10px auto;
+  animation: float-skull 2s ease-in-out infinite alternate;
+  filter: drop-shadow(0 0 10px var(--neon-pink));
+  display: block;
+}
+@keyframes float-skull {
+  0% { transform: translateY(0px) scale(1); filter: drop-shadow(0 0 5px var(--neon-pink)); }
+  100% { transform: translateY(-10px) scale(1.05); filter: drop-shadow(0 0 15px var(--neon-pink)); }
+}
+.skull-jaw {
+  animation: clatter-jaw 0.15s infinite alternate;
+  transform-origin: center;
+}
+@keyframes clatter-jaw {
+  0% { transform: translateY(0px); }
+  100% { transform: translateY(3px); }
+}
+.skull-eye {
+  animation: eye-glare 3s infinite;
+}
+@keyframes eye-glare {
+  0%, 100% { fill: var(--neon-pink); }
+  50% { fill: var(--neon-yellow); }
+}
+
+/* 4. Background Floating Cubes (Ambient) */
+.ambient-cubes {
+  position: fixed;
+  top: 0; left: 0; width: 100%; height: 100%;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+.floating-cube {
+  position: absolute;
+  width: 40px;
+  height: 40px;
+  border: 1px solid var(--neon-purple);
+  background: rgba(188, 19, 254, 0.05);
+  animation: float-up-cube 15s linear infinite;
+  opacity: 0.3;
+  box-shadow: 0 0 15px var(--neon-purple) inset;
+}
+.floating-cube:nth-child(1) { left: 10%; width: 30px; height: 30px; animation-duration: 12s; animation-delay: 0s; }
+.floating-cube:nth-child(2) { left: 85%; width: 50px; height: 50px; animation-duration: 18s; animation-delay: -5s; border-color: var(--neon-cyan); box-shadow: 0 0 15px var(--neon-cyan) inset;}
+.floating-cube:nth-child(3) { left: 50%; width: 20px; height: 20px; animation-duration: 25s; animation-delay: -10s; border-color: var(--neon-pink); box-shadow: 0 0 10px var(--neon-pink) inset;}
+.floating-cube:nth-child(4) { left: 25%; width: 60px; height: 60px; animation-duration: 22s; animation-delay: -2s; border-color: var(--neon-green); box-shadow: 0 0 20px var(--neon-green) inset;}
+
+@keyframes float-up-cube {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(1);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.4;
+  }
+  90% {
+    opacity: 0.4;
+  }
+  100% {
+    transform: translateY(-20vh) rotate(360deg) scale(1.5);
+    opacity: 0;
+  }
+}
