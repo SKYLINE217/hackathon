@@ -140,9 +140,9 @@ The platform utilizes a modern CSS design system to establish a premium cyberpun
 | Styling | Vanilla CSS3 (custom properties, animations, grid, flexbox) |
 | Logic | Vanilla ES6+ JavaScript (classes, modules, async/await) |
 | Graphics | HTML5 Canvas API (Snake game) |
-| Audio | Web Audio API (procedural sound generation) |
+| Audio | Web Audio API (procedural sound generation for *all* interactions: hovers, typing, powerups, wins, mistakes) |
 | Storage | LocalStorage API (scores, achievements, settings) |
-| Characters | Custom SVGs + CSS Keyframes (Byte the Cyber-Drone, Glitch-Cat, Holo-Skull) |
+| Characters | `ReactionSystem` (Dynamic SVGs + CSS Keyframes that react to user mistakes, wins, and achievements) + Ambient characters |
 | Timing | `performance.now()` (sub-millisecond precision) |
 
 ---

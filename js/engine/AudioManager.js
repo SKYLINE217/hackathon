@@ -36,6 +36,18 @@ const AudioManager = {
     click()    { this._play('square', 800, 0.06, 0.1); },
     wrong()    { this._play('sawtooth', 150, 0.25, 0.2, 80); },
     correct()  { this._play('sine',   660, 0.15, 0.2, 880); },
+    hover()    { this._play('sine',   600, 0.05, 0.05); },
+    jackIn()   {
+        if (!this.enabled || !this.ctx) return;
+        this._resume();
+        [200, 400, 800, 1600].forEach((f, i) => {
+            setTimeout(() => this._play('square', f, 0.1, 0.1), i * 80);
+        });
+    },
+    keyPress() { this._play('triangle', 300, 0.04, 0.05); },
+    keyError() { this._play('sawtooth', 100, 0.1, 0.1, 50); },
+    alert()    { this._play('square', 1200, 0.1, 0.2); },
+    turn()     { this._play('sine',   400, 0.03, 0.05); },
     gameOver() {
         if (!this.enabled || !this.ctx) return;
         this._resume();

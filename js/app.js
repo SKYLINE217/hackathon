@@ -58,7 +58,12 @@ const App = {
         // Leaderboard
         this._renderLeaderboard();
 
-        // Achievements
+        // Add global hover sound for clickable elements
+        document.querySelectorAll('button, .clickable, .game-card, .btn-category, .trivia-option').forEach(el => {
+            el.addEventListener('mouseenter', () => AudioManager.hover());
+        });
+
+        // Add scanlines & ambient effects
         AchievementSystem.renderGrid();
     },
 
@@ -113,9 +118,8 @@ const App = {
             document.getElementById('snake-gameover').style.display  = 'none';
             snakeGame?.destroy();
             snakeGame = new SnakeGame();
-            snakeGame._reset();
             snakeGame.start();
-            AudioManager.click();
+            AudioManager.jackIn();
         });
         document.getElementById('snake-retry-btn').addEventListener('click', () => {
             document.getElementById('snake-gameover').style.display  = 'none';
@@ -134,7 +138,7 @@ const App = {
             memoryGame?.destroy();
             memoryGame = new MemoryGame();
             memoryGame.start();
-            AudioManager.click();
+            AudioManager.jackIn();
         });
         document.getElementById('memory-retry-btn').addEventListener('click', () => {
             document.getElementById('memory-gameover').style.display = 'none';
@@ -160,7 +164,7 @@ const App = {
             document.getElementById('trivia-gameover').style.display = 'none';
             if (!triviaGame) triviaGame = new TriviaGame();
             triviaGame.start(); // synchronous now
-            AudioManager.click();
+            AudioManager.jackIn();
         });
         document.querySelectorAll('.trivia-option').forEach((btn, i) => {
             btn.addEventListener('click', () => triviaGame.onAnswer(i));
@@ -186,7 +190,7 @@ const App = {
             reflexGame?.destroy();
             reflexGame = new ReflexGame();
             reflexGame.start();
-            AudioManager.click();
+            AudioManager.jackIn();
         });
         document.getElementById('reflex-retry-btn').addEventListener('click', () => {
             document.getElementById('reflex-gameover').style.display = 'none';
@@ -219,7 +223,7 @@ const App = {
             typeracerGame = new TypeRacerGame();
             typeracerGame.setDuration(selectedDuration);
             typeracerGame.start();
-            AudioManager.click();
+            AudioManager.jackIn();
         });
         document.getElementById('typeracer-retry-btn').addEventListener('click', () => {
             document.getElementById('typeracer-gameover').style.display = 'none';

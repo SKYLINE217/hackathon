@@ -37,7 +37,7 @@ class ReflexGame {
             this.zone.className   = 'reflex-zone ready';
             instr.textContent     = 'CLICK NOW!';
             this._startTime       = performance.now();
-            AudioManager.tick();
+            AudioManager.alert();
         }, delay);
     }
 
@@ -50,6 +50,7 @@ class ReflexGame {
             this.zone.className = 'reflex-zone tooearly';
             document.getElementById('reflex-instruction').textContent = 'TOO EARLY! PENALTY...';
             AudioManager.wrong();
+            if (typeof ReactionSystem !== 'undefined') ReactionSystem.mistake();
             this.times.push(999);
             setTimeout(() => { this.current++; this._checkEnd(); }, 1500);
             return;

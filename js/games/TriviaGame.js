@@ -221,6 +221,7 @@ class TriviaGame {
             }
             this.streak = 0;
             AudioManager.wrong();
+            if (typeof ReactionSystem !== 'undefined') ReactionSystem.mistake();
         }
 
         const scoreEl  = document.getElementById('trivia-score');
@@ -246,6 +247,7 @@ class TriviaGame {
         }
 
         AudioManager.wrong();
+        if (typeof ReactionSystem !== 'undefined') ReactionSystem.mistake();
         const streakEl = document.getElementById('trivia-streak');
         if (streakEl) streakEl.textContent = '🔥 0';
 

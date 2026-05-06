@@ -24,6 +24,7 @@ const AchievementSystem = {
         if (isNew) {
             this._showToast(ach);
             AudioManager.achievement();
+            if (typeof ReactionSystem !== 'undefined') ReactionSystem.achievement();
             App.refreshHub();
         }
     },

@@ -129,16 +129,26 @@ class TypeRacerGame {
 
     _updateLiveChars(typed, target) {
         // Reset all chars in current word to default
+        let latestCharCorrect = true;
         [...target].forEach((ch, ci) => {
             const span = document.getElementById(`tr-c-${this.wordIndex}-${ci}`);
             if (!span) return;
             span.classList.remove('correct', 'wrong', 'current');
             if (ci < typed.length) {
-                span.classList.add(typed[ci] === ch ? 'correct' : 'wrong');
+                const isCorrect = typed[ci] === ch;
+                span.classList.add(isCorrect ? 'correct' : 'wrong');
+                if (ci === typed.length - 1) latestCharCorrect = isCorrect;
             } else if (ci === typed.length) {
                 span.classList.add('current');
             }
         });
+        
+        // Play sound for the newly typed character (if any)
+        if (typed.length > this.charIndex) {
+            if (latestCharCorrect) AudioManager.keyPress();
+            else AudioManager.keyError();
+        }
+
         this.charIndex = typed.length;
     }
 

@@ -32,6 +32,7 @@ const ParticleSystem = {
             font-family:'Orbitron',sans-serif; font-size:1.2rem; font-weight:900;
             color:${color}; text-shadow:0 0 8px ${color};
             pointer-events:none; z-index:9999; white-space:nowrap;
+            line-height: 1.2; padding: 0.1em;
         `;
         document.body.appendChild(el);
         el.animate([

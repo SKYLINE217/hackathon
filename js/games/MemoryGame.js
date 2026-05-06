@@ -83,12 +83,14 @@ class MemoryGame {
         if (this.phase !== 'input') return;
         const expected = this.pattern[this.playerInput.length];
         this.playerInput.push(idx);
-        AudioManager.click();
+        AudioManager.tick();
 
         if (idx === expected) {
             this._flashCell(idx, 'correct');
             setTimeout(() => this._clearCell(idx), 400);
             if (this.playerInput.length === this.pattern.length) {
+                AudioManager.correct();
+                if (typeof ReactionSystem !== 'undefined') ReactionSystem.win();
                 const bonus = Math.max(0, 100 - this.playerInput.length * 2);
                 this.score += 100 + bonus;
                 document.getElementById('memory-score').textContent = this.score;
@@ -96,10 +98,11 @@ class MemoryGame {
                 el.classList.remove('score-pop'); void el.offsetWidth; el.classList.add('score-pop');
                 this._disableInput();
                 this.phase = 'idle';
-                setTimeout(() => this._nextLevel(), 800);
+                setTimeout(() => this._nextLevel(), 1500);
             }
         } else {
             AudioManager.wrong();
+            if (typeof ReactionSystem !== 'undefined') ReactionSystem.mistake();
             this._flashCell(idx, 'wrong');
             this._disableInput();
             setTimeout(() => this._gameOver(), 800);

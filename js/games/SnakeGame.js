@@ -48,7 +48,10 @@ class SnakeGame extends GameEngine {
             const dirs = { U:{x:0,y:-1}, D:{x:0,y:1}, L:{x:-1,y:0}, R:{x:1,y:0} };
             const nd = dirs[d];
             // Prevent 180° reversal
-            if (nd.x !== -this.dir.x || nd.y !== -this.dir.y) this.nextDir = nd;
+            if (nd.x !== -this.dir.x || nd.y !== -this.dir.y) {
+                this.nextDir = nd;
+                AudioManager.turn();
+            }
         };
         document.addEventListener('keydown', this._keyHandler);
     }
@@ -148,6 +151,7 @@ class SnakeGame extends GameEngine {
     _die() {
         this.stop();
         AudioManager.gameOver();
+        if (typeof ReactionSystem !== 'undefined') ReactionSystem.mistake();
         const isNew = StorageManager.setHighScore('snake', this.score);
         document.getElementById('snake-final-score').textContent = this.score;
         document.getElementById('snake-high-msg').style.display  = isNew ? 'block' : 'none';
